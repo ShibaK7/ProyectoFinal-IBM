@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: SEARCH-ATM-SERVICE
+    
+server:
+  port: 8081
+  
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: 'http://localhost:8761/eureka/'
+  instance:
+    hostname: localhost
+      
+feign:
+  client:
+    atm:
+      name: Search-Service
+      url: https://www.banamex.com
+      mapping: /localizador
+      get: /jsonP/json5.json
+      
+controller:
+  atm:
+    mapping: /search
+    getByPriority: /priority
+    getByCity: /city
+    getByZipCode: /zipCode
+    getByGPS: /GPS
